@@ -1,5 +1,7 @@
 # Discord_things
-Stuff for discord, some fun stuff and some plex stuff
+Stuff for discord, some fun stuff and some plex stuff.\
+You will need a discord bot and its token.\
+All scripts are writing in python.
 
 ### delete_all_messages_in_a_channel.py
 This will delete all messages in a channel except pinned.\
