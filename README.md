@@ -18,3 +18,7 @@ membot_list_of_subreddits_hot100.py is newest iteration, it will take a while fo
 ### Add tags based on codec
 This was created to solve and issue of trying to mass encode av1 movies and have a fallback if there was an issue so I could redownload if encoding went wrong.
 
+### add_to_4k_radarr_if_watched.py
+Created to add movies that are in 1080p to my 4k radarr.
+Add "{title} {library_name}" to arguments in tautulli scripts
+
