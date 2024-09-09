@@ -6,9 +6,9 @@ radarr_4k_url = 'http://4k-radarr-url/api/v3'
 radarr_4k_apikey = 'your_radarr_4k_api_key'
 movie_library_name = 'Movies'  # The library you want to track
 
-# Radarr function to search movie by title
-def search_movie_in_radarr(movie_title):
-    url = f"{radarr_4k_url}/movie/lookup?term={movie_title}"
+# Radarr function to search movie by title and year
+def search_movie_in_radarr(movie_title, movie_year):
+    url = f"{radarr_4k_url}/movie/lookup?term={movie_title}%20{movie_year}"
     headers = {'X-Api-Key': radarr_4k_apikey}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
@@ -32,15 +32,15 @@ def add_movie_to_4k_radarr(movie_data):
     }
     response = requests.post(url, headers=headers, json=payload)
     if response.status_code == 201:
-        print(f"Successfully added {movie_data['title']} to 4K Radarr")
+        print(f"Successfully added {movie_data['title']} ({movie_data['year']}) to 4K Radarr")
     else:
         print(f"Error adding movie: {response.status_code}, {response.content}")
 
 # Main function to process the data passed from Tautulli
-def process_tautulli_data(movie_title, library_name):
+def process_tautulli_data(movie_title, movie_year, library_name):
     if library_name == movie_library_name:
-        print(f"{movie_title} watched from the 'Movies' library. Adding to 4K Radarr.")
-        movie_data = search_movie_in_radarr(movie_title)
+        print(f"{movie_title} ({movie_year}) watched from the 'Movies' library. Adding to 4K Radarr.")
+        movie_data = search_movie_in_radarr(movie_title, movie_year)
         if movie_data:
             add_movie_to_4k_radarr(movie_data[0])
     else:
@@ -50,7 +50,11 @@ def process_tautulli_data(movie_title, library_name):
 if __name__ == "__main__":
     # Tautulli passes these arguments when triggering the script
     movie_title = sys.argv[1]  # Movie title
-    library_name = sys.argv[2]  # Library name (e.g., 'Movies')
+    movie_year = sys.argv[2]   # Movie year
+    library_name = sys.argv[3]  # Library name (e.g., 'Movies')
 
     # Process the Tautulli data
-    process_tautulli_data(movie_title, library_name)
+    process_tautulli_data(movie_title, movie_year, library_name)
+
+# add to Tautulli arguments 
+# {title} {year} {library_name}
