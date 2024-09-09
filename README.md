@@ -1,4 +1,4 @@
-# Discord_things
+# Discord_and_plex_things
 Stuff for discord, some fun stuff and some plex stuff.\
 You will need a discord bot and its token.\
 All scripts are writing in python.
