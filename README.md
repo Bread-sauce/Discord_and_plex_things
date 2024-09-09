@@ -20,5 +20,5 @@ This was created to solve and issue of trying to mass encode av1 movies and have
 
 ### add_to_4k_radarr_if_watched.py - tautulli script
 Created to add movies that are in 1080p to my 4k radarr.
-Add "{title} {library_name}" to arguments in tautulli scripts
+Add "{title} {year} {library_name}" to arguments in tautulli scripts
 
